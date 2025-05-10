@@ -16,6 +16,8 @@ use Illuminate\Cookie\Middleware\EncryptCookies;
 use Illuminate\Foundation\Http\Middleware\VerifyCsrfToken;
 use Illuminate\Routing\Middleware\SubstituteBindings;
 use Illuminate\Session\Middleware\StartSession;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Blade;
 use Illuminate\View\Middleware\ShareErrorsFromSession;
 use Rmsramos\Activitylog\ActivitylogPlugin;
 
@@ -39,8 +41,7 @@ class AdminPanelProvider extends PanelProvider
                 Pages\Dashboard::class,
             ])
             ->discoverWidgets(in: app_path('Filament/Widgets'), for: 'App\\Filament\\Widgets')
-            ->widgets([
-            ])
+            ->widgets([])
             ->middleware([
                 EncryptCookies::class,
                 AddQueuedCookiesToResponse::class,
@@ -57,8 +58,20 @@ class AdminPanelProvider extends PanelProvider
             ])
             ->plugins([
                 ActivitylogPlugin::make()
-                    ->label('Atividade')
-                ,
+                    ->label('Registro de Atividade')
+                    ->pluralLabel('Registro de Atividades')
+                    ->authorize(function () {
+                        /** @var \App\Models\User|null $user */
+                        $user = Auth::user();
+
+                        // Se não estiver autenticado, esconde
+                        if (!$user) {
+                            return false;
+                        }
+
+                        // Mostra só para Admin
+                        return $user->hasRole('Admin');
+                    })
             ]);
     }
 }
