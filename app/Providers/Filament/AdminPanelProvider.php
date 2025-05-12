@@ -83,7 +83,7 @@ class AdminPanelProvider extends PanelProvider
                     ])
                     ->registration(true)
                     ->createUserUsing(function (string $provider, SocialiteUserContract $oauthUser) {
-                        $allowedDomains = ['edu.umuarama.pr.gov.br', 'umuarama.pr.gov.br'];
+                        $allowedDomains = ['gmail.com','gmail.com.br','edu.umuarama.pr.gov.br', 'umuarama.pr.gov.br'];
                         $email = $oauthUser->getEmail();
                         $domain = strtolower(explode('@', $email)[1] ?? '');
 
