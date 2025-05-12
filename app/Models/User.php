@@ -72,4 +72,10 @@ class User extends Authenticatable implements FilamentUser
     {
         return $this->hasPermissionTo('Acessar Painel');
     }
+        protected static function booted()
+    {
+        static::deleting(function ($user) {
+            $user->socialiteUsers()->delete();
+        });
+    }
 }

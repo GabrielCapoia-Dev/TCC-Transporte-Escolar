@@ -83,9 +83,13 @@ class AdminPanelProvider extends PanelProvider
                     ])
                     ->registration(true)
                     ->createUserUsing(function (string $provider, SocialiteUserContract $oauthUser) {
-                        $allowedDomains = ['gmail.com', 'gmail.com.br'];
+                        $allowedDomains = ['edu.umuarama.pr.gov.br', 'umuarama.pr.gov.br'];
                         $email = $oauthUser->getEmail();
                         $domain = strtolower(explode('@', $email)[1] ?? '');
+
+                        if (!in_array($domain, $allowedDomains)) {
+                            abort(403, 'Acesso negado: domínio de e-mail não permitido.');
+                        }
 
                         // Verifica se já existe um SocialiteUser com esse provider e provider_id
                         $existingSocialite = SocialiteUser::where('provider', $provider)
@@ -106,12 +110,12 @@ class AdminPanelProvider extends PanelProvider
                                 ->where('provider_id', $oauthUser->getId())
                                 ->exists();
 
-                            if (! $alreadyLinked) {
-                                $user->socialiteUsers()->create([
-                                    'provider' => $provider,
-                                    'provider_id' => $oauthUser->getId(),
-                                ]);
-                            }
+                            // if (! $alreadyLinked) {
+                            //     $user->socialiteUsers()->create([
+                            //         'provider' => $provider,
+                            //         'provider_id' => $oauthUser->getId(),
+                            //     ]);
+                            // }
 
                             return $user;
                         }
@@ -128,10 +132,8 @@ class AdminPanelProvider extends PanelProvider
                             'password' => bcrypt(Str::random(16)),
                         ]);
 
-                        $newUser->socialiteUsers()->create([
-                            'provider' => $provider,
-                            'provider_id' => $oauthUser->getId(),
-                        ]);
+                        $newUser->assignRole('Usuário');
+
 
                         return $newUser;
                     })
