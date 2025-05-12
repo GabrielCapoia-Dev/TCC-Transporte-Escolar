@@ -4,9 +4,11 @@ namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 
+use DutchCodingCompany\FilamentSocialite\Models\SocialiteUser;
 use Filament\Models\Contracts\FilamentUser;
 use Filament\Panel;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Spatie\Activitylog\LogOptions;
@@ -59,6 +61,11 @@ class User extends Authenticatable implements FilamentUser
     {
         return LogOptions::defaults()
         ->logOnly(['name', 'email']);
+    }
+    
+    public function socialiteUsers(): HasMany
+    { 
+        return $this->hasMany(SocialiteUser::class);
     }
 
     public function canAccessPanel(Panel $panel): bool
