@@ -110,13 +110,6 @@ class AdminPanelProvider extends PanelProvider
                                 ->where('provider_id', $oauthUser->getId())
                                 ->exists();
 
-                            // if (! $alreadyLinked) {
-                            //     $user->socialiteUsers()->create([
-                            //         'provider' => $provider,
-                            //         'provider_id' => $oauthUser->getId(),
-                            //     ]);
-                            // }
-
                             return $user;
                         }
 
@@ -130,11 +123,12 @@ class AdminPanelProvider extends PanelProvider
                             'name' => $oauthUser->getName() ?? 'Usuário Sem Nome',
                             'email' => $email,
                             'password' => bcrypt(Str::random(16)),
+                            'email_approved' => false,
+                            'email_verified_at' => null,
                         ]);
 
-                        $newUser->assignRole('Usuário');
-
-
+                        $newUser->assignRole('Acessar Painel');
+                        
                         return $newUser;
                     })
 

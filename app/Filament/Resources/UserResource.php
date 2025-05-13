@@ -13,7 +13,6 @@ use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 
-
 class UserResource extends Resource
 {
     protected static ?string $model = User::class;
@@ -25,7 +24,7 @@ class UserResource extends Resource
     public static ?string $pluralModelLabel = 'Usuários';
 
     public static ?string $slug = 'usuarios';
-    
+
 
     public static function form(Form $form): Form
     {
@@ -34,20 +33,22 @@ class UserResource extends Resource
                 Forms\Components\TextInput::make('name')
                     ->label('Nome de usuário')
                     ->required(),
+
                 Forms\Components\TextInput::make('email')
                     ->label('E-mail')
                     ->unique(ignoreRecord: true)
                     ->email()
                     ->required(),
+
                 Forms\Components\TextInput::make('password')
                     ->label('Senha')
                     ->password()
                     ->dehydrateStateUsing(fn($state) => Hash::make($state))
                     ->dehydrated(fn($state) => filled($state))
                     ->required(fn(string $context): bool => $context === 'create'),
+
                 Forms\Components\Select::make('role')
                     ->label('Nivel de acesso')
-                    ->multiple()
                     ->relationship('roles', 'name', function (Builder $query) {
                         /** @var \App\Models\User|null $user */
                         $user = Auth::user();
@@ -57,7 +58,12 @@ class UserResource extends Resource
                         return $query->where('name', '!=', 'Admin');
                     })
                     ->preload()
-                    ->required()
+                    ->required(),
+
+                Forms\Components\Toggle::make('email_approved')
+                    ->label('Verificação de acesso')
+                    ->default(true)
+
             ]);
     }
 
@@ -68,32 +74,70 @@ class UserResource extends Resource
                 Tables\Columns\TextColumn::make('name')
                     ->label('Nome de usuário')
                     ->searchable(),
+
                 Tables\Columns\TextColumn::make('email')
                     ->label('E-mail')
                     ->searchable(),
+
                 Tables\Columns\TextColumn::make('email_verified_at')
                     ->label('Verificado em')
-                    ->dateTime('d/m/Y H:i:s')
+                    ->since()
                     ->sortable()
-                    ->toggleable(isToggledHiddenByDefault: true),
+                    ->toggleable(isToggledHiddenByDefault: true)
+                    ->formatStateUsing(function ($state, $record) {
+                        if (!$record->email_approved) {
+                            return '--/--/-- --:--:--';
+                        }
+
+                        return $state ? $state->format('d/m/Y H:i:s') : '-';
+                    }),
+
+                Tables\Columns\ToggleColumn::make('email_approved')
+                    ->label('Verificação de Acesso')
+                    ->sortable()
+                    ->visible(function () {
+                        /** @var \App\Models\User|null $user */
+                        $user = Auth::user();
+
+                        // Se não estiver autenticado, esconde
+                        if (!$user) {
+                            return false;
+                        }
+
+                        // Mostra só para Admin
+                        return $user->hasRole('Admin');
+                    })
+                    ->afterStateUpdated(function (\App\Models\User $record, bool $state) {
+                        if ($state) {
+                            $record->assignRole('Acessar Painel');
+                            $record->email_verified_at = now();
+                        } else {
+                            $record->removeRole('Acessar Painel');
+                            $record->email_verified_at = null;
+                        }
+
+                        $record->save();
+                    }),
 
                 Tables\Columns\TextColumn::make('created_at')
                     ->label('Criado em')
-                    // ->dateTime('d/m/Y H:i:s')
                     ->since()
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
+
                 Tables\Columns\TextColumn::make('updated_at')
                     ->label('Atualizado em')
-                    // ->dateTime('d/m/Y H:i:s')
                     ->since()
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
+
                 Tables\Columns\TextColumn::make('roles.name')
                     ->label('Nivel de acesso')
                     ->sortable()
                     ->searchable()
-                    ->toggleable(isToggledHiddenByDefault: true)
+                    ->toggleable(isToggledHiddenByDefault: true),
+
+
             ])
             ->filters([
                 //
@@ -147,5 +191,14 @@ class UserResource extends Resource
             }
             $query->where('name', '!=', 'Admin');
         });
+    }
+
+    public static function afterSave(\Illuminate\Database\Eloquent\Model $record): void
+    {
+        if ($record->email_approved) {
+            $record->assignRole('Acessar Painel');
+        } else {
+            $record->removeRole('Acessar Painel');
+        }
     }
 }

@@ -31,6 +31,8 @@ class User extends Authenticatable implements FilamentUser
     protected $fillable = [
         'name',
         'email',
+        'email_approved',
+        'email_verified_at',
         'password',
     ];
 
@@ -60,11 +62,11 @@ class User extends Authenticatable implements FilamentUser
     public function getActivitylogOptions(): LogOptions
     {
         return LogOptions::defaults()
-        ->logOnly(['name', 'email']);
+            ->logOnly(['name', 'email', 'email_verified_at', 'email_approved']);
     }
-    
+
     public function socialiteUsers(): HasMany
-    { 
+    {
         return $this->hasMany(SocialiteUser::class);
     }
 
@@ -72,10 +74,27 @@ class User extends Authenticatable implements FilamentUser
     {
         return $this->hasPermissionTo('Acessar Painel');
     }
-        protected static function booted()
+    
+    protected static function booted()
     {
         static::deleting(function ($user) {
             $user->socialiteUsers()->delete();
+        });
+
+        parent::booted();
+
+        static::deleting(function ($user) {
+            $user->socialiteUsers()->delete();
+        });
+
+        static::updating(function ($user) {
+            if (
+                $user->isDirty('email_approved') &&
+                $user->email_approved &&
+                is_null($user->getOriginal('email_verified_at'))
+            ) {
+                $user->email_verified_at = now();
+            }
         });
     }
 }
