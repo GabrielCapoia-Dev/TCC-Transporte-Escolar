@@ -106,17 +106,6 @@ class UserResource extends Resource
 
                         // Mostra só para Admin
                         return $user->hasRole('Admin');
-                    })
-                    ->afterStateUpdated(function (\App\Models\User $record, bool $state) {
-                        if ($state) {
-                            $record->assignRole('Acessar Painel');
-                            $record->email_verified_at = now();
-                        } else {
-                            $record->removeRole('Acessar Painel');
-                            $record->email_verified_at = null;
-                        }
-
-                        $record->save();
                     }),
 
                 Tables\Columns\TextColumn::make('created_at')
@@ -191,14 +180,5 @@ class UserResource extends Resource
             }
             $query->where('name', '!=', 'Admin');
         });
-    }
-
-    public static function afterSave(\Illuminate\Database\Eloquent\Model $record): void
-    {
-        if ($record->email_approved) {
-            $record->assignRole('Acessar Painel');
-        } else {
-            $record->removeRole('Acessar Painel');
-        }
     }
 }

@@ -72,14 +72,11 @@ class User extends Authenticatable implements FilamentUser
 
     public function canAccessPanel(Panel $panel): bool
     {
-        return $this->hasPermissionTo('Acessar Painel');
+        return $this->email_approved && $this->hasPermissionTo('Acessar Painel');
     }
     
     protected static function booted()
     {
-        static::deleting(function ($user) {
-            $user->socialiteUsers()->delete();
-        });
 
         parent::booted();
 
