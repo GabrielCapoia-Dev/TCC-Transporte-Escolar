@@ -40,32 +40,30 @@ O sistema oferece os seguintes módulos e funcionalidades:
 
 Agradecemos aos seguintes colaboradores que contribuíram para o desenvolvimento deste projeto:
 
-<p align="center">
+<div align="center">
     <table>
         <tr>
-            <td align="center" style="padding: 10px;">
+            <td align="center">
                 <a href="https://github.com/BrenoMalto" target="_blank">
-                    <img src="https://avatars.githubusercontent.com/u/45457397?v=4" width="120" height="120" style="border-radius: 50%;" alt="Breno Malto"/>
+                    <img src="https://avatars.githubusercontent.com/u/45457397?v=4" width="100px;" alt="Breno Malto"/>
                     <br />
-                    <b>Breno Malto</b>
+                    <sub><b>Breno Malto</b></sub>
                 </a>
             </td>
-            <td align="center" style="padding: 10px;">
+            <td align="center">
                 <a href="https://github.com/Gabriel-GoDev" target="_blank">
-                    <img src="https://avatars.githubusercontent.com/u/140769179?v=4" width="120" height="120" style="border-radius: 50%;" alt="Gabriel GoDev"/>
+                    <img src="https://avatars.githubusercontent.com/u/140769179?v=4" width="100px;" alt="Gabriel GoDev"/>
                     <br />
-                    <b>Gabriel GoDev</b>
+                    <sub><b>Gabriel GoDev</b></sub>
                 </a>
             </td>
-            <td align="center" style="padding: 10px;">
+            <td align="center">
                 <a href="https://github.com/GabrielCapoia-Dev" target="_blank">
-                    <img src="https://avatars.githubusercontent.com/u/135331760?v=4" width="120" height="120" style="border-radius: 50%;" alt="Gabriel Capoia"/>
+                    <img src="https://avatars.githubusercontent.com/u/135331760?v=4" width="100px;" alt="Gabriel Capoia"/>
                     <br />
-                    <b>Gabriel Capoia</b>
+                    <sub><b>Gabriel Capoia</b></sub>
                 </a>
             </td>
         </tr>
     </table>
-</p>
-
-
+</div>
