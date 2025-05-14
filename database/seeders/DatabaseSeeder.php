@@ -16,7 +16,7 @@ class DatabaseSeeder extends Seeder
         app()[\Spatie\Permission\PermissionRegistrar::class]->forgetCachedPermissions();
 
         // Lista de permissões que serão atribuídas à role Admin
-        $permissions = [
+        $permissionsList = [
             'Acessar Painel',
             'Listar Usuários',
             'Criar Usuários',
@@ -32,16 +32,25 @@ class DatabaseSeeder extends Seeder
             'Excluir Permissões de Execução',
         ];
 
+        $accessPainelPermissions = [
+            'Acessar Painel',
+        ];
+
         // Criação (ou recuperação) das permissões
-        foreach ($permissions as $permissionName) {
+        foreach ($permissionsList as $permissionName) {
             Permission::firstOrCreate(['name' => $permissionName]);
         }
 
         // Criação da rule (role) Admin
         $adminRole = Role::firstOrCreate(['name' => 'Admin']);
+        
+        // Criação da rule (role) Usuário
+        $accessPainelRule = Role::firstOrCreate(['name' => 'Acessar Painel']);
 
         // Atribui todas as permissões à role Admin
-        $adminRole->syncPermissions($permissions);
+        $adminRole->syncPermissions($permissionsList);
+        
+        $accessPainelRule->syncPermissions($accessPainelPermissions);
 
         // Criação do usuário admin
         $adminUser = User::firstOrCreate(
@@ -49,6 +58,8 @@ class DatabaseSeeder extends Seeder
             [
                 'name' => 'Admin',
                 'password' => Hash::make('123456'),
+                'email_verified_at' => now(),
+                'email_approved' => true
             ]
         );
 
