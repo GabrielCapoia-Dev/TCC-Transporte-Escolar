@@ -18,15 +18,15 @@ O sistema é construído utilizando as seguintes tecnologias:
 
 ## Sobre o Sistema de Gerenciamento de Transporte Escolar
 
-Este sistema foi desenvolvido para centralizar e otimizar a gestão do transporte escolar, fornecendo ferramentas essenciais para administradores e garantindo a conformidade com as normas de transporte escolar. [cite: 1, 2, 3]
+Este sistema foi desenvolvido para centralizar e otimizar a gestão do transporte escolar, fornecendo ferramentas essenciais para administradores e garantindo a conformidade com as normas de transporte escolar.
 
 ## Funcionalidades Principais
 
 O sistema oferece os seguintes módulos e funcionalidades:
 
--   **Gestão de Rotas**: Criação e otimização de trajetos utilizando mapas interativos com integração ao Google Maps API, permitindo definir paradas estratégicas e horários escolares. [cite: 4]
--   **Controle de Frotas**: Registro e gerenciamento detalhado de veículos, incluindo informações sobre manutenções e vistorias periódicas. [cite: 5]
--   **Emissão de Carteirinhas**: Geração de identificações estudantis a partir de dados coletados via Google Forms, com sincronização automática através da API do Google Sheets. [cite: 6]
+-   **Gestão de Rotas**: Criação e otimização de trajetos utilizando mapas interativos com integração ao Google Maps API, permitindo definir paradas estratégicas e horários escolares.
+-   **Controle de Frotas**: Registro e gerenciamento detalhado de veículos, incluindo informações sobre manutenções e vistorias periódicas.
+-   **Emissão de Carteirinhas**: Geração de identificações estudantis a partir de dados coletados via Google Forms, com sincronização automática através da API do Google Sheets.
 -   **Gerenciamento de Usuários**: Cadastro de usuários com autenticação via Google, definição de senhas seguras e geração automática de senha no primeiro acesso.
 -   **Gerenciamento de Motoristas**: Cadastro e controle de informações dos motoristas.
 -   **Gerenciamento de Endereços**: Cadastro de endereços com preenchimento automático via API VIACEP a partir do CEP.
@@ -44,10 +44,10 @@ Desenvolvedores que contribuíram para o desenvolvimento deste projeto:
     <table>
         <tr>
             <td align="center">
-                <a href="https://github.com/BrenoMalto" target="_blank">
-                    <img src="https://avatars.githubusercontent.com/u/45457397?v=4" width="100px;" alt="Breno Malto"/>
+                <a href="https://github.com/GabrielCapoia-Dev" target="_blank">
+                    <img src="https://avatars.githubusercontent.com/u/135331760?v=4" width="100px;" alt="Gabriel Capoia"/>
                     <br />
-                    <sub><b>Breno Malto</b></sub>
+                    <sub><b>Gabriel Capoia</b></sub>
                 </a>
             </td>
             <td align="center">
@@ -58,10 +58,10 @@ Desenvolvedores que contribuíram para o desenvolvimento deste projeto:
                 </a>
             </td>
             <td align="center">
-                <a href="https://github.com/GabrielCapoia-Dev" target="_blank">
-                    <img src="https://avatars.githubusercontent.com/u/135331760?v=4" width="100px;" alt="Gabriel Capoia"/>
+                <a href="https://github.com/BrenoMalto" target="_blank">
+                    <img src="https://avatars.githubusercontent.com/u/45457397?v=4" width="100px;" alt="Breno Malto"/>
                     <br />
-                    <sub><b>Gabriel Capoia</b></sub>
+                    <sub><b>Breno Malto</b></sub>
                 </a>
             </td>
         </tr>
