@@ -36,9 +36,9 @@ O sistema oferece os seguintes módulos e funcionalidades:
 -   **Gerenciamento de Turnos**: Cadastro dos turnos escolares.
 -   **Gerenciamento de Alunos**: Cadastro completo de alunos, incluindo dados pessoais, vinculação com informações escolares (escola, turma, turno, série), endereço e informações de responsáveis, além de foto. O nome da foto é armazenado utilizando o CGM do aluno.
 
-## Colaboradores
+## Desenvolvedores
 
-Agradecemos aos seguintes colaboradores que contribuíram para o desenvolvimento deste projeto:
+Desenvolvedores que contribuíram para o desenvolvimento deste projeto:
 
 <div align="center">
     <table>
