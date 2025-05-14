@@ -40,37 +40,32 @@ O sistema oferece os seguintes módulos e funcionalidades:
 
 Agradecemos aos seguintes colaboradores que contribuíram para o desenvolvimento deste projeto:
 
-<div align="center">
+<p align="center">
     <table>
         <tr>
             <td align="center" style="padding: 15px;">
                 <a href="https://github.com/BrenoMalto" target="_blank">
-                    <img src="https://avatars.githubusercontent.com/u/45457397?v=4" width="100px;" 
-                         style="border-radius: 50%; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);" 
-                         alt="Breno Malto"/>
+                    <img src="https://avatars.githubusercontent.com/u/45457397?v=4" width="120px" style="border-radius: 50%; box-shadow: 0px 4px 8px rgba(0,0,0,0.2);" alt="Breno Malto"/>
                     <br />
                     <sub><b>Breno Malto</b></sub>
                 </a>
             </td>
             <td align="center" style="padding: 15px;">
                 <a href="https://github.com/Gabriel-GoDev" target="_blank">
-                    <img src="https://avatars.githubusercontent.com/u/140769179?v=4" width="100px;" 
-                         style="border-radius: 50%; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);" 
-                         alt="Gabriel GoDev"/>
+                    <img src="https://avatars.githubusercontent.com/u/140769179?v=4" width="120px" style="border-radius: 50%; box-shadow: 0px 4px 8px rgba(0,0,0,0.2);" alt="Gabriel GoDev"/>
                     <br />
                     <sub><b>Gabriel GoDev</b></sub>
                 </a>
             </td>
             <td align="center" style="padding: 15px;">
                 <a href="https://github.com/GabrielCapoia-Dev" target="_blank">
-                    <img src="https://avatars.githubusercontent.com/u/135331760?v=4" width="100px;" 
-                         style="border-radius: 50%; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);" 
-                         alt="Gabriel Capoia"/>
+                    <img src="https://avatars.githubusercontent.com/u/135331760?v=4" width="120px" style="border-radius: 50%; box-shadow: 0px 4px 8px rgba(0,0,0,0.2);" alt="Gabriel Capoia"/>
                     <br />
                     <sub><b>Gabriel Capoia</b></sub>
                 </a>
             </td>
         </tr>
     </table>
-</div>
+</p>
+
 
