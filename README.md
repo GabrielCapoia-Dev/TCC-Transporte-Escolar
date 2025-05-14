@@ -1,3 +1,4 @@
+# Sistema de Gerenciamento de Transporte Escolar
 
 ## Tecnologias Utilizadas
 
@@ -17,43 +18,59 @@ O sistema é construído utilizando as seguintes tecnologias:
 
 ## Sobre o Sistema de Gerenciamento de Transporte Escolar
 
-Este sistema foi desenvolvido para centralizar e otimizar a gestão do transporte escolar, fornecendo ferramentas essenciais para administradores e garantindo a conformidade com as normas de transporte escolar.
+Este sistema foi desenvolvido para centralizar e otimizar a gestão do transporte escolar, fornecendo ferramentas essenciais para administradores e garantindo a conformidade com as normas de transporte escolar. [cite: 1, 2, 3]
 
 ## Funcionalidades Principais
 
 O sistema oferece os seguintes módulos e funcionalidades:
 
-- **Gestão de Rotas**: Criação e otimização de trajetos utilizando mapas interativos com integração ao Google Maps API, permitindo definir paradas estratégicas e horários escolares.
-- **Controle de Frotas**: Registro e gerenciamento detalhado de veículos, incluindo informações sobre manutenções e vistorias periódicas.
-- **Emissão de Carteirinhas**: Geração de identificações estudantis a partir de dados coletados via Google Forms, com sincronização automática através da API do Google Sheets.
-- **Gerenciamento de Usuários**: Cadastro de usuários com autenticação via Google, definição de senhas seguras e geração automática de senha no primeiro acesso.
-- **Gerenciamento de Motoristas**: Cadastro e controle de informações dos motoristas.
-- **Gerenciamento de Endereços**: Cadastro de endereços com preenchimento automático via API VIACEP a partir do CEP.
-- **Gerenciamento de Escolas**: Cadastro e informações das instituições de ensino.
-- **Gerenciamento de Turmas**: Cadastro das turmas escolares.
-- **Gerenciamento de Séries**: Cadastro das séries escolares.
-- **Gerenciamento de Turnos**: Cadastro dos turnos escolares.
-- **Gerenciamento de Alunos**: Cadastro completo de alunos, incluindo dados pessoais, vinculação com informações escolares (escola, turma, turno, série), endereço e informações de responsáveis, além de foto. O nome da foto é armazenado utilizando o CGM do aluno.
-
+-   **Gestão de Rotas**: Criação e otimização de trajetos utilizando mapas interativos com integração ao Google Maps API, permitindo definir paradas estratégicas e horários escolares. [cite: 4]
+-   **Controle de Frotas**: Registro e gerenciamento detalhado de veículos, incluindo informações sobre manutenções e vistorias periódicas. [cite: 5]
+-   **Emissão de Carteirinhas**: Geração de identificações estudantis a partir de dados coletados via Google Forms, com sincronização automática através da API do Google Sheets. [cite: 6]
+-   **Gerenciamento de Usuários**: Cadastro de usuários com autenticação via Google, definição de senhas seguras e geração automática de senha no primeiro acesso.
+-   **Gerenciamento de Motoristas**: Cadastro e controle de informações dos motoristas.
+-   **Gerenciamento de Endereços**: Cadastro de endereços com preenchimento automático via API VIACEP a partir do CEP.
+-   **Gerenciamento de Escolas**: Cadastro e informações das instituições de ensino.
+-   **Gerenciamento de Turmas**: Cadastro das turmas escolares.
+-   **Gerenciamento de Séries**: Cadastro das séries escolares.
+-   **Gerenciamento de Turnos**: Cadastro dos turnos escolares.
+-   **Gerenciamento de Alunos**: Cadastro completo de alunos, incluindo dados pessoais, vinculação com informações escolares (escola, turma, turno, série), endereço e informações de responsáveis, além de foto. O nome da foto é armazenado utilizando o CGM do aluno.
 
 ## Colaboradores
 
 Agradecemos aos seguintes colaboradores que contribuíram para o desenvolvimento deste projeto:
 
 <div align="center">
-    <a href="https://github.com/BrenoMalto" target="_blank">
-        <img src="https://avatars.githubusercontent.com/u/45457397?v=4" width="100px;" alt="Breno Malto"/>
-        <br />
-        <sub><b>Breno Malto</b></sub>
-    </a>
-    <a href="https://github.com/Gabriel-GoDev" target="_blank">
-        <img src="https://avatars.githubusercontent.com/u/140769179?v=4" width="100px;" alt="Gabriel GoDev"/>
-        <br />
-        <sub><b>Gabriel GoDev</b></sub>
-    </a>
-    <a href="https://github.com/GabrielCapoia-Dev" target="_blank">
-        <img src="https://avatars.githubusercontent.com/u/135331760?v=4" width="100px;" alt="Gabriel Capoia"/>
-        <br />
-        <sub><b>Gabriel Capoia</b></sub>
-    </a>
+    <table>
+        <tr>
+            <td align="center" style="padding: 15px;">
+                <a href="https://github.com/BrenoMalto" target="_blank">
+                    <img src="https://avatars.githubusercontent.com/u/45457397?v=4" width="100px;" 
+                         style="border-radius: 50%; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);" 
+                         alt="Breno Malto"/>
+                    <br />
+                    <sub><b>Breno Malto</b></sub>
+                </a>
+            </td>
+            <td align="center" style="padding: 15px;">
+                <a href="https://github.com/Gabriel-GoDev" target="_blank">
+                    <img src="https://avatars.githubusercontent.com/u/140769179?v=4" width="100px;" 
+                         style="border-radius: 50%; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);" 
+                         alt="Gabriel GoDev"/>
+                    <br />
+                    <sub><b>Gabriel GoDev</b></sub>
+                </a>
+            </td>
+            <td align="center" style="padding: 15px;">
+                <a href="https://github.com/GabrielCapoia-Dev" target="_blank">
+                    <img src="https://avatars.githubusercontent.com/u/135331760?v=4" width="100px;" 
+                         style="border-radius: 50%; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);" 
+                         alt="Gabriel Capoia"/>
+                    <br />
+                    <sub><b>Gabriel Capoia</b></sub>
+                </a>
+            </td>
+        </tr>
+    </table>
 </div>
+
