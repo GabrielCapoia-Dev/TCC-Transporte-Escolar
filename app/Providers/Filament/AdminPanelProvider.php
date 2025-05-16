@@ -3,6 +3,7 @@
 namespace App\Providers\Filament;
 
 use App\Models\User;
+use App\Services\DominioEmailService;
 use Filament\Http\Middleware\AuthenticateSession;
 use Filament\Http\Middleware\DisableBladeIconComponents;
 use Filament\Http\Middleware\DispatchServingFilamentEvent;
@@ -83,12 +84,10 @@ class AdminPanelProvider extends PanelProvider
                     ])
                     ->registration(true)
                     ->createUserUsing(function (string $provider, SocialiteUserContract $oauthUser) {
-                        $allowedDomains = ['gmail.com','gmail.com.br','edu.umuarama.pr.gov.br', 'umuarama.pr.gov.br'];
                         $email = $oauthUser->getEmail();
-                        $domain = strtolower(explode('@', $email)[1] ?? '');
 
-                        if (!in_array($domain, $allowedDomains)) {
-                            abort(403, 'Acesso negado: domínio de e-mail não permitido.');
+                        if (!app('App\Services\DominioEmailService')->isEmailAutorizado($email)) {
+                            throw new \App\Exceptions\EmailNaoAutorizado('Email não é permitido para cadastro, entre em contato com o administrador.');
                         }
 
                         // Verifica se já existe um SocialiteUser com esse provider e provider_id
@@ -112,12 +111,6 @@ class AdminPanelProvider extends PanelProvider
 
                             return $user;
                         }
-
-                        // Se domínio não for permitido, aborta
-                        if (!in_array($domain, $allowedDomains)) {
-                            return null;
-                        }
-
                         // Cria novo usuário e vincula SocialiteUser
                         $newUser = User::create([
                             'name' => $oauthUser->getName() ?? 'Usuário Sem Nome',
@@ -128,10 +121,16 @@ class AdminPanelProvider extends PanelProvider
                         ]);
 
                         $newUser->assignRole('Acessar Painel');
-                        
+
+                        // Notificação para o usuário após o redirecionamento
+                        session()->flash('filament_notification', [
+                            'title' => 'Acesso Negado',
+                            'body' => 'Entre em contato com o Administrador e solicite acesso ao painel.',
+                            'status' => 'warning',
+                        ]);
+
                         return $newUser;
                     })
-
             ]);
     }
 }
