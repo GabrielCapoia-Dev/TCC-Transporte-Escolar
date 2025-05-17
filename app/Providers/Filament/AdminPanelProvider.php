@@ -2,6 +2,7 @@
 
 namespace App\Providers\Filament;
 
+use App\Livewire\PasswordReset;
 use App\Models\User;
 use App\Services\DominioEmailService;
 use App\Services\GoogleService;
@@ -24,6 +25,7 @@ use Filament\Http\Middleware\Authenticate;
 use DutchCodingCompany\FilamentSocialite\FilamentSocialitePlugin;
 use DutchCodingCompany\FilamentSocialite\Models\SocialiteUser;
 use DutchCodingCompany\FilamentSocialite\Provider;
+use Illuminate\Support\Facades\Route;
 use Laravel\Socialite\Contracts\User as SocialiteUserContract;
 
 class AdminPanelProvider extends PanelProvider
@@ -31,6 +33,9 @@ class AdminPanelProvider extends PanelProvider
     public function panel(Panel $panel): Panel
     {
         return $panel
+            ->routes(function(){
+                Route::get('/password-reset', PasswordReset::class);
+            })
             ->default()
             ->id('admin')
             ->path('admin')
