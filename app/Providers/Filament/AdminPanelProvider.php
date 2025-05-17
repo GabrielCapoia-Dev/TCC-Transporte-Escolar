@@ -25,7 +25,6 @@ use DutchCodingCompany\FilamentSocialite\FilamentSocialitePlugin;
 use DutchCodingCompany\FilamentSocialite\Models\SocialiteUser;
 use DutchCodingCompany\FilamentSocialite\Provider;
 use Laravel\Socialite\Contracts\User as SocialiteUserContract;
-use Illuminate\Support\Str;
 
 class AdminPanelProvider extends PanelProvider
 {

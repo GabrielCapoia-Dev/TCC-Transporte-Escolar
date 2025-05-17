@@ -33,9 +33,7 @@ class GoogleService
 
             return true;
         }
-        throw new \App\Exceptions\AcessoNegadoLogin(
-            'Acesso negado. Entre em contato com o administrador.'
-        );
+        return false;
     }
 
     private function loginGoogle(SocialiteUserContract $oauthUser)
