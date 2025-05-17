@@ -30,6 +30,10 @@ class DatabaseSeeder extends Seeder
             'Criar Permissões de Execução',
             'Editar Permissões de Execução',
             'Excluir Permissões de Execução',
+            'Listar Dominios de Email',
+            'Criar Dominios de Email',
+            'Editar Dominios de Email',
+            'Excluir Dominios de Email',
         ];
 
         $accessPainelPermissions = [
