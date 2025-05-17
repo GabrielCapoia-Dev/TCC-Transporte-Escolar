@@ -4,6 +4,7 @@ namespace App\Providers\Filament;
 
 use App\Models\User;
 use App\Services\DominioEmailService;
+use App\Services\GoogleService;
 use Filament\Http\Middleware\AuthenticateSession;
 use Filament\Http\Middleware\DisableBladeIconComponents;
 use Filament\Http\Middleware\DispatchServingFilamentEvent;
@@ -84,6 +85,8 @@ class AdminPanelProvider extends PanelProvider
                     ])
                     ->registration(true)
                     ->createUserUsing(function (string $provider, SocialiteUserContract $oauthUser) {
+                        $service = new GoogleService();
+
                         $email = $oauthUser->getEmail();
 
                         if (!app('App\Services\DominioEmailService')->isEmailAutorizado($email)) {
@@ -98,38 +101,9 @@ class AdminPanelProvider extends PanelProvider
                         if ($existingSocialite) {
                             return $existingSocialite->user;
                         }
+                        $user = $service->registrarOuLogar($oauthUser);
 
-                        // Verifica se já existe um User com esse e-mail
-                        $user = User::where('email', $email)->first();
-
-                        // Se existir, verifica se já tem um SocialiteUser correspondente
-                        if ($user) {
-                            $alreadyLinked = $user->socialiteUsers()
-                                ->where('provider', $provider)
-                                ->where('provider_id', $oauthUser->getId())
-                                ->exists();
-
-                            return $user;
-                        }
-                        // Cria novo usuário e vincula SocialiteUser
-                        $newUser = User::create([
-                            'name' => $oauthUser->getName() ?? 'Usuário Sem Nome',
-                            'email' => $email,
-                            'password' => bcrypt(Str::random(16)),
-                            'email_approved' => false,
-                            'email_verified_at' => null,
-                        ]);
-
-                        $newUser->assignRole('Acessar Painel');
-
-                        // Notificação para o usuário após o redirecionamento
-                        session()->flash('filament_notification', [
-                            'title' => 'Acesso Negado',
-                            'body' => 'Entre em contato com o Administrador e solicite acesso ao painel.',
-                            'status' => 'warning',
-                        ]);
-
-                        return $newUser;
+                        return $user;
                     })
             ]);
     }

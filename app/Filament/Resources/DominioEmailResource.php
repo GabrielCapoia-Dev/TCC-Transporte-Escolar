@@ -21,7 +21,7 @@ class DominioEmailResource extends Resource
 {
     protected static ?string $model = DominioEmail::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+    protected static ?string $navigationIcon = 'heroicon-o-envelope';
 
     public static ?string $label = 'Dominio Permitido';
 

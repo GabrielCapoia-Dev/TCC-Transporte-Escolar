@@ -5,7 +5,9 @@ namespace App\Models;
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 
 use DutchCodingCompany\FilamentSocialite\Models\SocialiteUser;
+use Filament\Facades\Filament;
 use Filament\Models\Contracts\FilamentUser;
+use Filament\Notifications\Notification;
 use Filament\Panel;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\HasMany;
@@ -70,11 +72,24 @@ class User extends Authenticatable implements FilamentUser
         return $this->hasMany(SocialiteUser::class);
     }
 
+    /**
+     * Check if the user can access the Filament panel.
+     *
+     * @param Panel $panel
+     * @return bool
+     */
     public function canAccessPanel(Panel $panel): bool
     {
-        return $this->email_approved && $this->hasPermissionTo('Acessar Painel');
+        if ($this->email_approved && $this->hasPermissionTo('Acessar Painel')) {
+            return true;
+        }
+
+        throw new \App\Exceptions\AcessoNegadoLogin(
+            'Acesso negado. Entre em contato com o administrador.'
+        );
     }
-    
+
+
     protected static function booted()
     {
 
