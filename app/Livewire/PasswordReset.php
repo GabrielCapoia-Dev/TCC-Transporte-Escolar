@@ -2,6 +2,7 @@
 
 namespace App\Livewire;
 
+use App\Services\UserService;
 use Filament\Forms\Components\Actions;
 use Filament\Forms\Components\Card;
 use Filament\Forms\Components\TextInput;
@@ -67,6 +68,22 @@ class PasswordReset extends SimplePage
     public function send(): void
     {
         $data = $this->form->getState();
+        
+        
+        $service = new UserService();
+
+        $userNewPassword = $service->updatePassword($data);
+
+        if(!$userNewPassword) {
+            Notification::make()
+                ->title('Erro ao redefinir senha')
+                ->body('Ocorreu um erro ao redefinir sua senha.')
+                ->error()
+                ->send();
+                
+            $this->form->fill(); // Limpa o formulario
+            $this->redirect('/password-reset'); // Redireciona para a tela de redefinição de senha
+        }
         
         Notification::make()
             ->title('Senha Redefinida')
