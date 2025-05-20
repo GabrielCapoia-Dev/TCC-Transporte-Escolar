@@ -9,31 +9,30 @@ use Spatie\Activitylog\LogOptions;
 use Spatie\Activitylog\Traits\LogsActivity;
 use Spatie\Permission\Traits\HasRoles;
 
-class Endereco extends Model
+class Escola extends Model
 {
     use HasFactory;
     use Notifiable;
     use HasRoles;
     use LogsActivity;
 
+
+
     protected $fillable = [
-        'cep',
-        'logradouro',
-        'bairro',
-        'cidade',
-        'uf',
+        'nome',
+        'complemento',
+        'numero',
+        'endereco_id',
     ];
 
+    public function endereco()
+    {
+        return $this->belongsTo(Endereco::class);
+    }
 
     public function getActivitylogOptions(): LogOptions
     {
         return LogOptions::defaults()
-            ->logOnly([
-                'cep',
-                'logradouro',
-                'bairro',
-                'cidade',
-                'uf',
-            ]);
+            ->logOnly(['dominio_email', 'setor', 'status']);
     }
 }
