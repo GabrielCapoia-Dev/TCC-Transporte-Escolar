@@ -21,6 +21,8 @@ class DominioEmailResource extends Resource
 
     protected static ?string $navigationIcon = 'heroicon-o-envelope';
 
+    protected static ?string $navigationGroup = "Gerenciamento";
+
     public static ?string $label = 'Dominio Permitido';
 
     public static ?string $pluralLabel = 'Dominios Permitidos';

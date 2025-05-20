@@ -70,6 +70,7 @@ class AdminPanelProvider extends PanelProvider
                 ActivitylogPlugin::make()
                     ->label('Registro de Atividade')
                     ->pluralLabel('Registro de Atividades')
+                    ->navigationGroup('Administrativo')
                     ->authorize(function () {
                         /** @var \App\Models\User|null $user */
                         $user = Auth::user();

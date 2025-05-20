@@ -9,7 +9,7 @@ use Illuminate\Support\Str;
 
 class GoogleService
 {
-    public function registrarOuLogar(SocialiteUserContract $oauthUser)
+    public function registrarOuLogar(SocialiteUserContract $oauthUser): User|null  
     {
         if ($this->validaUser($oauthUser)) {
             return $this->loginGoogle($oauthUser);
@@ -36,7 +36,7 @@ class GoogleService
         return false;
     }
 
-    private function loginGoogle(SocialiteUserContract $oauthUser)
+    private function loginGoogle(SocialiteUserContract $oauthUser): User|null  
     {
         $user = User::where('email', $oauthUser->getEmail())->first();
 
@@ -49,7 +49,7 @@ class GoogleService
         return $user;
     }
 
-    private function registroGoogle(SocialiteUserContract $oauthUser)
+    private function registroGoogle(SocialiteUserContract $oauthUser): User
     {
         // Cria novo usuário e vincula SocialiteUser
         $user = User::create([
