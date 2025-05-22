@@ -73,6 +73,7 @@ class AdminPanelProvider extends PanelProvider
                     ->label('Registro de Atividade')
                     ->pluralLabel('Registro de Atividades')
                     ->navigationGroup('Administrativo')
+                    ->navigationSort(1)
                     ->authorize(function () {
                         /** @var \App\Models\User|null $user */
                         $user = Auth::user();

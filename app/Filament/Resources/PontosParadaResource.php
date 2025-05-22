@@ -15,9 +15,24 @@ use Illuminate\Database\Eloquent\SoftDeletingScope;
 
 class PontosParadaResource extends Resource
 {
+    public static function getNavigationBadge(): ?string
+    {
+        $value = (string) static::getModel()::count();
+
+        if ($value > 0) {
+            return $value;
+        }
+        return null;
+    }
+
+    public static function getNavigationBadgeTooltip(): ?string
+    {
+        return 'Quantidade de pontos cadastrados';
+    }
+
     protected static ?string $model = PontosParada::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+    protected static ?string $navigationIcon = 'heroicon-o-map-pin';
 
     public static function form(Form $form): Form
     {

@@ -13,6 +13,21 @@ use Illuminate\Support\Facades\Auth;
 
 class PermissionResource extends Resource
 {
+    public static function getNavigationBadge(): ?string
+    {
+        $value = (string) static::getModel()::count();
+
+        if ($value > 0) {
+            return $value;
+        }
+        return null;
+    }
+
+    public static function getNavigationBadgeTooltip(): ?string
+    {
+        return 'Quantidade de permissoes cadastradas';
+    }
+
     protected static ?string $model = Permission::class;
 
     protected static ?string $navigationIcon = 'heroicon-o-key';
@@ -25,7 +40,7 @@ class PermissionResource extends Resource
 
     public static ?string $slug = 'permissoes';
 
-    public static ?int $navigationSort = 0;
+    public static ?int $navigationSort = 2;
 
 
     public static function form(Form $form): Form
@@ -51,10 +66,10 @@ class PermissionResource extends Resource
                 Tables\Columns\TextColumn::make('name')
                     ->label('Permissão de execução')
                     ->searchable(),
-                    Tables\Columns\TextColumn::make('created_at')
-                        ->label('Criado em')
-                        ->dateTime('d/m/Y H:i:s')
-                        ->sortable(),
+                Tables\Columns\TextColumn::make('created_at')
+                    ->label('Criado em')
+                    ->dateTime('d/m/Y H:i:s')
+                    ->sortable(),
             ])
             ->filters([
                 //

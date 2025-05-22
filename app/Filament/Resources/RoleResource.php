@@ -16,6 +16,21 @@ use Illuminate\Support\Facades\Auth;
 
 class RoleResource extends Resource
 {
+    public static function getNavigationBadge(): ?string
+    {
+        $value = (string) static::getModel()::count();
+
+        if ($value > 0) {
+            return $value;
+        }
+        return null;
+    }
+
+    public static function getNavigationBadgeTooltip(): ?string
+    {
+        return 'Quantidade de niveis de acesso cadastrados';
+    }
+
     protected static ?string $model = Role::class;
 
     protected static ?string $navigationIcon = 'heroicon-o-key';
@@ -28,7 +43,7 @@ class RoleResource extends Resource
 
     public static ?string $navigationGroup = 'Administrativo';
 
-    public static ?int $navigationSort = 0;
+    public static ?int $navigationSort = 3;
 
 
 

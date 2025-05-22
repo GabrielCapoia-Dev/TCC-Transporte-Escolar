@@ -15,6 +15,21 @@ use Illuminate\Database\Eloquent\SoftDeletingScope;
 
 class VeiculoResource extends Resource
 {
+    public static function getNavigationBadge(): ?string
+    {
+        $value = (string) static::getModel()::count();
+
+        if ($value > 0) {
+            return $value;
+        }
+        return null;
+    }
+
+    public static function getNavigationBadgeTooltip(): ?string
+    {
+        return 'Quantidade de veículos cadastrados';
+    }
+
     protected static ?string $model = Veiculo::class;
 
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';

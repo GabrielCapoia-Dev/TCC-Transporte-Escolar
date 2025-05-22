@@ -17,6 +17,21 @@ use Filament\Tables\Table;
 
 class DominioEmailResource extends Resource
 {
+    public static function getNavigationBadge(): ?string
+    {
+        $value = (string) static::getModel()::count();
+
+        if ($value > 0) {
+            return $value;
+        }
+        return null;
+    }
+
+    public static function getNavigationBadgeTooltip(): ?string
+    {
+        return 'Quantidade de dominios permitidos';
+    }
+
     protected static ?string $model = DominioEmail::class;
 
     protected static ?string $navigationIcon = 'heroicon-o-envelope';
@@ -42,7 +57,7 @@ class DominioEmailResource extends Resource
                 TextInput::make('setor')
                     ->label('Setor')
                     ->required(),
-                    
+
                 Toggle::make('status')
                     ->label('Status')
                     ->default(false),
