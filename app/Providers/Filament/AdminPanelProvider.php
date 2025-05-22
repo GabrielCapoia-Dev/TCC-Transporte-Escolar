@@ -33,15 +33,17 @@ class AdminPanelProvider extends PanelProvider
     public function panel(Panel $panel): Panel
     {
         return $panel
-            ->routes(function(){
+            ->routes(function () {
                 Route::get('/password-reset', PasswordReset::class);
             })
+            ->favicon(asset('images/favicon.png'))
             ->default()
             ->id('admin')
             ->path('admin')
             ->login()
+            ->brandName('GeoBus')
             ->colors([
-                'primary' => Color::Blue,
+                'primary' => Color::Green,
                 'gray' => Color::Slate,
             ])
             ->sidebarCollapsibleOnDesktop()
